@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarnVolt | Premium OTP Rewards Hub</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <!-- Load EmailJS Client SDK Script Package -->
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body>
+
+    <!-- Modern OTP Authentication Gateway Interface Overlay -->
+    <div id="auth-screen" class="auth-wrapper">
+        <div class="auth-container">
+            <div class="auth-header">
+                <span class="auth-logo">⚡ EarnVolt</span>
+                <h2>Secure Instant Sign-In</h2>
+                <p id="auth-instructions">Enter your email address to receive a 6-digit secure login OTP code.</p>
+            </div>
+            
+            <div class="auth-form">
+                <!-- Step 1: Input Email Address -->
+                <div id="email-view-step" class="input-group">
+                    <label for="auth-email">Email Address</label>
+                    <input type="email" id="auth-email" placeholder="e.g., name@domain.com">
+                    <button class="primary-action-btn" style="margin-top: 20px;" onclick="requestSecureOTP()">Send Verification Code</button>
+                </div>
+
+                <!-- Step 2: Input Generated OTP Code -->
+                <div id="otp-view-step" class="input-group hidden">
+                    <label for="auth-otp">Enter 6-Digit Code</label>
+                    <input type="text" id="auth-otp" placeholder="••••••" maxlength="6" style="text-align: center; font-size: 1.5rem; letter-spacing: 5px;">
+                    <button class="primary-action-btn" style="margin-top: 20px;" onclick="verifyUserOTPClaims()">Verify & Open Dashboard</button>
+                    <button class="secondary-action-btn" onclick="location.reload()">Back to Email</button>
+                </div>
+                
+                <p id="auth-error" class="form-error-msg"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Protected Member Workspace Dashboard -->
+    <div id="main-dashboard" class="dashboard-layout hidden">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">⚡ EarnVolt</div>
+            <div class="user-profile-badge">
+                <div class="avatar">👤</div>
+                <div>
+                    <h4 id="user-display">Loading...</h4>
+                    <span class="status-indicator">Active Partner</span>
+                </div>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active"><span>📺</span> Video Offerwall</a>
+                <a href="#" class="menu-item" onclick="attemptWithdrawal()"><span>🏦</span> Cashout Wallet</a>
+            </nav>
+            <button onclick="logout()" class="sidebar-logout-btn">Log Out Session</button>
+        </aside>
+
+        <!-- Content Area Stream -->
+        <div class="content-stream">
+            <header class="top-nav">
+                <div class="page-title">Video Stream Dashboard</div>
+                <div class="wallet-badge">
+                    <span class="wallet-label">Your Balance</span>
+                    <span class="wallet-val">$<span id="balance">0.000</span></span>
+                </div>
+            </header>
+
+            <main class="dashboard-view">
+                
+                <!-- Immersive Live Streaming Video Player Frame -->
+                <div id="ad-player-wrapper" class="hidden video-player-billboard">
+                    <div class="player-overlay-card">
+                        <div class="spinner">🍿</div>
+                        <h4 id="player-status-headline">Streaming Commercial Media...</h4>
+                        <p id="player-status-desc">You must maintain active focus. Closing your screen halts tracking rewards.</p>
+                        
+                        <div class="timer-countdown-box">
+                            Remaining: <span id="ad-countdown-timer">0</span>s
+                        </div>
+
+                        <!-- Action Rewards Claim Button -->
+                        <div style="margin-top: 10px; margin-bottom: 20px;">
+                            <button id="claim-reward-trigger-btn" class="hidden" style="background: #10b981; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-weight: 800; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(16,185,129,0.4); transition: transform 0.2s;">🎁 CLAIM REWARD NOW</button>
+                        </div>
+
+                        <!-- Progress Loading Line -->
+                        <div class="progress-track-bar">
+                            <div id="ad-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live User Statistics Banners -->
+                <section class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-title">Videos Streams Viewed</span>
+                        <h3 id="tasks-completed-count">0</h3>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-title">Minimum Cashout Threshold</span>
+                        <h3>$1.000 <span style="font-size:0.8rem; color:var(--text-muted);">USD</span></h3>
+                    </div>
+                </section>
+
+                <!-- Dynamic Offer Wall Section Grid -->
+                <div class="offers-section">
+                    <h3>🔥 Available Commercial Streaming Tiers</h3>
+                    <div class="offers-grid" id="video-tiers-display-grid">
+                        <!-- Populated dynamically via script loops -->
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <div id="toast" class="toast-notification hidden"></div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
